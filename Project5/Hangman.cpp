@@ -33,8 +33,10 @@ int main()
 	
 	char guess = ' '; // guess from user
 	string dictionary[20]; // 20 words to load from file
-	int random20 = 0;
+	int random20 = 0; // random number
 	string word = ""; // word to be read from file (the solution)
+	int wordLength = 0; // length of word
+	string solution = ""; // solution (guessed by user)
 
 	inFile.open("Words4Hangman.txt"); // open input file
 
@@ -42,16 +44,28 @@ int main()
 	{
 		for (int i = 0; i < 20; i++)
 		{
-			inFile >> dictionary[i]; // load file
-			cout << dictionary[i] << endl; // testing
+			inFile >> dictionary[i]; // load file and fill dict
 		}
 	}
 
-	srand((int)time(NULL));
-	random20 = (rand() % 20);
+	inFile.close(); // close the file
+
+	srand((int)time(NULL)); // initialize random seed
+	random20 = (rand() % 20); // set random to 20 +-
 
 	word = dictionary[rand() % 20]; // set word = to a random letter in the dictionary
 
 	cout << "Random word: -------- " << word << endl; // test
+
+	wordLength = word.length();
+	cout << "Word length: " << wordLength << endl; // test
+
+	for (int i = 0; i < wordLength; i++) // fill solution with * length of word
+	{
+		solution[i] = '*';
+	}
+
+	cout << "Solution: " << solution << endl;
+
 	return 0;
 }
