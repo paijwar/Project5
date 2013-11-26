@@ -19,9 +19,13 @@ Problem:
 
 #include <iomanip>
 #include <iostream>
+#include <fstream>
 using namespace std;
+
+ifstream inFile;     // define ifstream to inFile command
+ofstream outFile;    // define outfile2
 
 int main()
 {
-
+	inFile.open("Words4Hangman.txt"); // open input file
 }
