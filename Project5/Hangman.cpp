@@ -1,7 +1,7 @@
-/*
+/**************************************************************
 COSC 501
 Elliott Plack
-14 NOV 2013
+14 NOV 2013                            Due date: 30 NOV 2013
 
 Problem:
 	Write a program that plays the game of HANGMAN(guessing a
@@ -15,4 +15,13 @@ Problem:
 	one computer wins. The player decides whether or not to
 	start a new session. 
 
-*/
+***************************************************************/
+
+#include <iomanip>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+
+}
