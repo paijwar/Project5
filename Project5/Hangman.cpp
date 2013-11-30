@@ -31,11 +31,11 @@ int main()
 {
 	// variables
 	
-	char guess = ' '; // guess from user
+	//char guess = ' '; // guess from user
 	string dictionary[20]; // 20 words to load from file
 	int random20 = 0; // random number
 	string word = ""; // word to be read from file (the solution)
-	int wordLength = 0; // length of word
+	unsigned long wordLength = 0; // length of word
 	string solution = ""; // solution (guessed by user)
 
 	inFile.open("Words4Hangman.txt"); // open input file
@@ -57,7 +57,7 @@ int main()
 
 	cout << "Random word: -------- " << word << endl; // test
 
-	wordLength = word.length();
+	wordLength = word.size();
 	cout << "Word length: " << wordLength << endl; // test
 
 	for (int i = 0; i < wordLength; i++) // fill solution with * length of word
