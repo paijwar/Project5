@@ -60,10 +60,7 @@ int main()
 	wordLength = word.size();
 	cout << "Word length: " << wordLength << endl; // test
 
-	for (int i = 0; i < wordLength; i++) // fill solution with * length of word
-	{
-		solution[i] = '*';
-	}
+	solution.assign(wordLength, '*');
 
 	cout << "Solution: " << solution << endl;
 
