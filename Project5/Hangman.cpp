@@ -27,16 +27,20 @@ using namespace std;
 ifstream inFile;     // define ifstream to inFile command
 ofstream outFile;    // define outfile2
 
-int main()
+void initialize(unsigned long); // function to initalize everything
+
+// global variables
+char guess; // guess from user
+string word; // word to be read from file (the solution)
+string solution; // solution (guessed by user)
+
+// functions
+
+int main() // reads in the file and sets the functions in motion
 {
-	// variables
-	
-	//char guess = ' '; // guess from user
-	string dictionary[20]; // 20 words to load from file
 	int random20 = 0; // random number
-	string word = ""; // word to be read from file (the solution)
-	unsigned long wordLength = 0; // length of word
-	string solution = ""; // solution (guessed by user)
+	unsigned long wordLength; // length of word
+	string dictionary[20]; // 20 words to load from file
 
 	inFile.open("Words4Hangman.txt"); // open input file
 
@@ -54,15 +58,16 @@ int main()
 	random20 = (rand() % 20); // set random to 20 +-
 
 	word = dictionary[rand() % 20]; // set word = to a random letter in the dictionary
+	wordLength = word.size(); // size (length) of the string
 
-	cout << "Random word: -------- " << word << endl; // test
-
-	wordLength = word.size();
-	cout << "Word length: " << wordLength << endl; // test
-
-	solution.assign(wordLength, '*');
-
-	cout << "Solution: " << solution << endl;
+	initialize(wordLength); // sends length of word to initialize function
 
 	return 0;
+}
+
+void initialize(unsigned long wordLength)
+{
+	solution.assign(wordLength, '*');
+
+	cout << "Solution: " << solution << endl; // test
 }
