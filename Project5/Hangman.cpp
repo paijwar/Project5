@@ -43,6 +43,7 @@ int main() // reads in the file and sets the functions in motion
 {
 	readString();
 	initialize(wordLength); // sends length of word to initialize function
+	cout << "Let's play hangman!\n";
 	guess();
 
 	return 0;
@@ -82,16 +83,18 @@ void initialize(unsigned long wordLength)
 
 void guess()
 {
-	string guessWord;
-	cout << "Guess a word\n";
-	cin >> guessWord;
+	char guessLetter = ' '; // letter to guess
+	cout << solution << endl; // output solution
+	cout << "Guess a letter\n";
+	cin >> guessLetter;
+
+	for (unsigned long i = 0; i < wordLength; i++)
+	{
+		if (guessLetter == word[i])
+		{
+			cout << "char " << i << " is " << guessLetter << endl;
+		}
+		cout << guessLetter << "is not in the word";
+	}
 	
-	if (guessWord.compare(word) == 0)
-	{
-		cout << "success";
-	}
-	else
-	{
-		cout << "fail";
-	}
 }
