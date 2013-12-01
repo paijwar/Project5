@@ -77,24 +77,34 @@ void readString()
 void initialize(unsigned long wordLength)
 {
 	solution.assign(wordLength, '*');
-
-	cout << "Solution: " << solution << endl; // test
 }
 
 void guess()
 {
 	char guessLetter = ' '; // letter to guess
+	string solutionOld = solution; // solution string to compare with
+	int winning = 0; // variable to check if won
+	
 	cout << solution << endl; // output solution
 	cout << "Guess a letter\n";
 	cin >> guessLetter;
 
-	for (unsigned long i = 0; i < wordLength; i++)
+	while (winning == 0)
 	{
-		if (guessLetter == word[i])
+		for (unsigned long i = 0; i < wordLength; i++)
 		{
-			cout << "char " << i << " is " << guessLetter << endl;
+			if (guessLetter == word[i])
+			{
+				cout << "char " << (i + 1) /* +1 because first is 0*/ << " is " << guessLetter << endl;
+				solution[i] = guessLetter;
+			}
 		}
-		cout << guessLetter << "is not in the word";
+
+		if (solutionOld.compare(solution) != 0) // check if solution has changed
+		{
+			cout << "Good guess!\n"
+				<< solution << endl; // display positive
+			solutionOld = solution; // set compare string to old for next run.
+		}
 	}
-	
 }
