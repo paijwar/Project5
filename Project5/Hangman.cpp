@@ -21,25 +21,36 @@ Problem:
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <time.h>
+#include <time.h> // for random
 using namespace std;
 
 ifstream inFile;     // define ifstream to inFile command
 ofstream outFile;    // define outfile2
 
+void readString();
 void initialize(unsigned long); // function to initalize everything
+void guess(); 
 
 // global variables
-char guess; // guess from user
+//char guess; // guess from user
 string word; // word to be read from file (the solution)
 string solution; // solution (guessed by user)
+unsigned long wordLength; // length of word
 
 // functions
 
 int main() // reads in the file and sets the functions in motion
 {
+	readString();
+	initialize(wordLength); // sends length of word to initialize function
+	guess();
+
+	return 0;
+}
+
+void readString()
+{
 	int random20 = 0; // random number
-	unsigned long wordLength; // length of word
 	string dictionary[20]; // 20 words to load from file
 
 	inFile.open("Words4Hangman.txt"); // open input file
@@ -58,11 +69,8 @@ int main() // reads in the file and sets the functions in motion
 	random20 = (rand() % 20); // set random to 20 +-
 
 	word = dictionary[rand() % 20]; // set word = to a random letter in the dictionary
+	cout << word << endl; // cheater! (testing)
 	wordLength = word.size(); // size (length) of the string
-
-	initialize(wordLength); // sends length of word to initialize function
-
-	return 0;
 }
 
 void initialize(unsigned long wordLength)
@@ -70,4 +78,20 @@ void initialize(unsigned long wordLength)
 	solution.assign(wordLength, '*');
 
 	cout << "Solution: " << solution << endl; // test
+}
+
+void guess()
+{
+	string guessWord;
+	cout << "Guess a word\n";
+	cin >> guessWord;
+	
+	if (guessWord.compare(word) == 0)
+	{
+		cout << "success";
+	}
+	else
+	{
+		cout << "fail";
+	}
 }
