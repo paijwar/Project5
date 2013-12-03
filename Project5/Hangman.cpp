@@ -29,6 +29,7 @@ ifstream inFile;     // define ifstream to inFile command
 void readString();
 void initialize(unsigned long); // function to initalize everything
 void guess(); 
+void hangmanDraw(int, int, string);
 
 // global variables
 string word; // word to be read from file (the solution)
@@ -105,6 +106,7 @@ void guess()
 		{
 			winning = 1; // you won
 			cout << "Victory!\n"; // quick output for testing
+			hangmanDraw(guessesCounter, winning, solution);
 		}
 		else if (goodGuess == 1)
 		{
@@ -125,4 +127,49 @@ void guess()
 	}
 	if (guessesCounter == 0)
 		cout << "You are dead!\n"; // end if you run out of guesses
+}
+
+void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay)
+{
+	// set up strings for game
+	string hD01 = "    /\  /\__ _ _ __   __ _ _ __ ___   __ _ _ __  \n";
+	string hD02 = "   / /_/ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ \n";
+	string hD03 = "  / __  / (_| | | | | (_| | | | | | | (_| | | | |\n";
+	string hD04 = "  \/ /_/ \__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|\n";
+	string hD05 = "                     |___/                       \n";
+	string hD06 = "                            by Elliott Plack     \n";
+	string hD07 = "                                                 \n";
+	string hD08 = "      _______                                    \n";
+	string hD09 = "     |/      |          ______________________   \n";
+	string hD10 = "     |                 |                      |  \n";
+	string hD11 = "     |                 | Your Progress        |  \n";
+	string hD12 = "     |                 |                      |  \n";
+	string hD13 = "     |                 |                      |  \n";
+	string hD14 = "     |                 |                      |  \n";
+	string hD15 = "  ___|___              |______________________|  \n";
+
+	// set up body parts
+	string head = "(_)";
+	string neck = "|";
+	string leftArm = "\\";
+	string rightArm = "/";
+	string torso = "|";
+	string leftLeg = "/";
+	string rightLeg = "\\";
+	const char space = ' ';
+
+	cout << string(50, '\n'); // clear the input screen
+	
+	if (winningResult == 1)
+	{
+		hD10 = hD10.replace(26, 3, head);
+		hD11 = hD11.replace(26, 3, leftArm + neck + rightArm);
+		hD12 = hD12.replace(27, 1, torso);
+		hD13 = hD13.replace(26, 3, leftLeg + space + rightLeg);
+		hD14 = hD14.replace(39, wordLength, solutionDisplay);
+
+		cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
+			<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
+	}
+
 }
