@@ -25,7 +25,6 @@ Problem:
 using namespace std;
 
 ifstream inFile;     // define ifstream to inFile command
-ofstream outFile;    // define outfile2
 
 void readString();
 void initialize(unsigned long); // function to initalize everything
@@ -76,7 +75,7 @@ void readString()
 
 void initialize(unsigned long wordLength)
 {
-	solution.assign(wordLength, '*');
+	solution.assign(wordLength, '*'); // fills up the solution string (an array) with as many *s as the word length
 }
 
 void guess()
