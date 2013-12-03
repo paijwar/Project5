@@ -119,9 +119,11 @@ void guess()
 		{
 			guessesCounter--; // decrement guess
 			cout << "The letter " << guessLetter << " does not appear in the word.\n"
-				<< "You have " << guessesCounter << "remaining.\n"
+				<< "You have " << guessesCounter << " remaining.\n"
 				<< "Enter another letter: ";
 			cin >> guessLetter;
 		}
 	}
+
+	cout << "You are dead!\n"; // end if you run out of guesses
 }
