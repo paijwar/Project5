@@ -132,10 +132,10 @@ void guess()
 void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay)
 {
 	// set up strings for game
-	string hD01 = "    /\  /\__ _ _ __   __ _ _ __ ___   __ _ _ __  \n";
-	string hD02 = "   / /_/ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ \n";
-	string hD03 = "  / __  / (_| | | | | (_| | | | | | | (_| | | | |\n";
-	string hD04 = "  \/ /_/ \__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|\n";
+	string hD01 = "    /\\  /\\__ _ _ __   __ _ _ __ ___   __ _ _ __  \n"; // have to escape out backslash
+	string hD02 = "   / /_/ / _` | '_ \\ / _` | '_ ` _ \\ / _` | '_ \\ \n"; // have to escape out backslash
+	string hD03 = "  / __  / (_| | | | | (_| | | | | | | (_| | | | |\n"; 
+	string hD04 = "  \\/ /_/ \\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|\n"; // have to escape out backslash
 	string hD05 = "                     |___/                       \n";
 	string hD06 = "                            by Elliott Plack     \n";
 	string hD07 = "                                                 \n";
@@ -157,16 +157,18 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay)
 	string leftLeg = "/";
 	string rightLeg = "\\";
 	const char space = ' ';
+	string youWon = "YOU WON !!";
 
-	cout << string(50, '\n'); // clear the input screen
+	system("CLS"); // clear the input screen
 	
 	if (winningResult == 1)
 	{
-		hD10 = hD10.replace(26, 3, head);
-		hD11 = hD11.replace(26, 3, leftArm + neck + rightArm);
-		hD12 = hD12.replace(27, 1, torso);
-		hD13 = hD13.replace(26, 3, leftLeg + space + rightLeg);
-		hD14 = hD14.replace(39, wordLength, solutionDisplay);
+		hD10 = hD10.replace(12, 3, head);
+		hD11 = hD11.replace(12, 3, leftArm + neck + rightArm);
+		hD12 = hD12.replace(13, 1, torso);
+		hD13 = hD13.replace(12, 3, leftLeg + space + rightLeg);
+		hD13 = hD13.replace(25, wordLength, solutionDisplay);
+		hD14 = hD14.replace(31, 10, youWon);
 
 		cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
 			<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
