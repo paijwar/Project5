@@ -84,27 +84,44 @@ void guess()
 	char guessLetter = ' '; // letter to guess
 	string solutionOld = solution; // solution string to compare with
 	int winning = 0; // variable to check if won
+	int guessesCounter = 7;
 	
 	cout << solution << endl; // output solution
 	cout << "Guess a letter\n";
 	cin >> guessLetter;
 
-	while (winning == 0)
+	while ((guessesCounter > 0) && (winning == 0)) //
 	{
-		for (unsigned long i = 0; i < wordLength; i++)
+		for (unsigned long i = 0; i < wordLength; i++) // loop through word looking for guess
 		{
 			if (guessLetter == word[i])
 			{
-				cout << "char " << (i + 1) /* +1 because first is 0*/ << " is " << guessLetter << endl;
+				cout << "char " << (i + 1) /* +1 because first is 0*/ << " is " << guessLetter << endl; // outputs that guess was correct
 				solution[i] = guessLetter;
 			}
 		}
 
 		if (solutionOld.compare(solution) != 0) // check if solution has changed
 		{
-			cout << "Good guess!\n"
-				<< solution << endl; // display positive
-			solutionOld = solution; // set compare string to old for next run.
+			if (solution == word) // thus victory
+			{
+				winning = 1; // you won
+				cout << "Victory!\n"; // quick output for testing
+			}
+			else
+			{
+				cout << "Good guess!\n"
+					<< solution << endl; // display positive
+				solutionOld = solution; // set compare string to old for next run.
+			}
+		}
+		else
+		{
+			guessesCounter--; // decrement guess
+			cout << "The letter " << guessLetter << " does not appear in the word.\n"
+				<< "You have " << guessesCounter << "remaining.\n"
+				<< "Enter another letter: ";
+			cin >> guessLetter;
 		}
 	}
 }
