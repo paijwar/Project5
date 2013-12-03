@@ -31,7 +31,6 @@ void initialize(unsigned long); // function to initalize everything
 void guess(); 
 
 // global variables
-//char guess; // guess from user
 string word; // word to be read from file (the solution)
 string solution; // solution (guessed by user)
 unsigned long wordLength; // length of word
@@ -40,10 +39,10 @@ unsigned long wordLength; // length of word
 
 int main() // reads in the file and sets the functions in motion
 {
-	readString();
+	readString(); // reads the file and stores variables
 	initialize(wordLength); // sends length of word to initialize function
 	cout << "Let's play hangman!\n";
-	guess();
+	guess(); // game logic
 
 	return 0;
 }
