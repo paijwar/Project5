@@ -83,37 +83,39 @@ void guess()
 {
 	char guessLetter = ' '; // letter to guess
 	string solutionOld = solution; // solution string to compare with
-	int winning = 0; // variable to check if won
-	int guessesCounter = 7;
+	int winning = 0, goodGuess = 0; // variable to check if the game is won or the guess is good
+	int guessesCounter = 7; // hangman countdown
 	
 	cout << solution << endl; // output solution
 	cout << "Guess a letter\n";
 	cin >> guessLetter;
 
-	while ((guessesCounter > 0) && (winning == 0)) //
+	while ((guessesCounter > 0) && (winning == 0))
 	{
+		guessLetter = toupper(guessLetter); // make guess uppercase
+
 		for (unsigned long i = 0; i < wordLength; i++) // loop through word looking for guess
 		{
 			if (guessLetter == word[i])
 			{
-				cout << "char " << (i + 1) /* +1 because first is 0*/ << " is " << guessLetter << endl; // outputs that guess was correct
-				solution[i] = guessLetter;
+				//cout << "char " << (i + 1) /* +1 because first is 0*/ << " is " << guessLetter << endl; // outputs that guess was correct
+				solution[i] = guessLetter; // set the i char in solution to guessLetter
+				goodGuess = 1; // sets the flag goodGuess = 1 for the logic below
 			}
 		}
 
-		if (solutionOld.compare(solution) != 0) // check if solution has changed
+		if (solution == word) // thus victory
 		{
-			if (solution == word) // thus victory
-			{
-				winning = 1; // you won
-				cout << "Victory!\n"; // quick output for testing
-			}
-			else
-			{
-				cout << "Good guess!\n"
-					<< solution << endl; // display positive
-				solutionOld = solution; // set compare string to old for next run.
-			}
+			winning = 1; // you won
+			cout << "Victory!\n"; // quick output for testing
+		}
+		else if (goodGuess == 1)
+		{
+			cout << "Good guess!\n"
+				<< solution << endl; // display positive
+			goodGuess = 0; // clear flag for next run
+			cout << "Enter your next guess: ";
+			cin >> guessLetter;
 		}
 		else
 		{
