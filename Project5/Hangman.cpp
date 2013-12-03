@@ -80,7 +80,6 @@ void initialize(unsigned long wordLength)
 void guess()
 {
 	char guessLetter = ' '; // letter to guess
-	string solutionOld = solution; // solution string to compare with
 	int winning = 0, goodGuess = 0; // variable to check if the game is won or the guess is good
 	int guessesCounter = 7; // hangman countdown
 	
@@ -88,7 +87,7 @@ void guess()
 	cout << "Guess a letter\n";
 	cin >> guessLetter;
 
-	while ((guessesCounter > 0) && (winning == 0))
+	while ((guessesCounter > 1) && (winning == 0))
 	{
 		guessLetter = toupper(guessLetter); // make guess uppercase
 
@@ -124,6 +123,6 @@ void guess()
 			cin >> guessLetter;
 		}
 	}
-
-	cout << "You are dead!\n"; // end if you run out of guesses
+	if (guessesCounter == 0)
+		cout << "You are dead!\n"; // end if you run out of guesses
 }
