@@ -86,7 +86,7 @@ void guess()
 
 	hangmanDraw(guessesCounter, winning, solution); // show blank
 
-	while ((guessesCounter <= 7) && (winning == 0))
+	while ((guessesCounter > 0) && (winning == 0))
 	{
 		
 		cout << "Guess a letter: ";
