@@ -83,17 +83,12 @@ void guess()
 	char guessLetter = ' '; // letter to guess
 	int winning = 0, goodGuess = 0; // variable to check if the game is won or the guess is good
 	int guessesCounter = 7; // hangman countdown
-	
-	//cout << solution << endl; // output solution
-	
-	// show hangman to start
-	// hangmanDraw(-1, 0, solution); // coded values to show the first screen.
-	
 
+	hangmanDraw(guessesCounter, winning, solution); // show blank
 
 	while ((guessesCounter <= 7) && (winning == 0))
 	{
-		hangmanDraw(guessesCounter, winning, solution);
+		
 		cout << "Guess a letter: ";
 		cin >> guessLetter;
 		guessLetter = toupper(guessLetter); // make guess uppercase
