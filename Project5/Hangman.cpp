@@ -87,13 +87,15 @@ void guess()
 	//cout << solution << endl; // output solution
 	
 	// show hangman to start
-	hangmanDraw(-1, 0, solution); // coded values to show the first screen.
+	// hangmanDraw(-1, 0, solution); // coded values to show the first screen.
 	
-	cout << "Guess a letter: ";
-	cin >> guessLetter;
 
-	while ((guessesCounter > 1) && (winning == 0))
+
+	while ((guessesCounter <= 7) && (winning == 0))
 	{
+		hangmanDraw(guessesCounter, winning, solution);
+		cout << "Guess a letter: ";
+		cin >> guessLetter;
 		guessLetter = toupper(guessLetter); // make guess uppercase
 
 		for (unsigned long i = 0; i < wordLength; i++) // loop through word looking for guess
@@ -109,30 +111,19 @@ void guess()
 		if (solution == word) // thus victory
 		{
 			winning = 1; // you won
-			cout << "Victory!\n"; // quick output for testing
 			hangmanDraw(guessesCounter, winning, solution);
 		}
 		else if (goodGuess == 1)
 		{
-			//cout << "Good guess!\n"
-			//	<< solution << endl; // display positive
 			goodGuess = 0; // clear flag for next run
 			hangmanDraw(guessesCounter, winning, solution);
-			cout << "Enter your next guess: ";
-			cin >> guessLetter;
 		}
 		else
 		{
 			guessesCounter--; // decrement guess
-			//cout << "The letter " << guessLetter << " does not appear in the word.\n"
-			//	<< "You have " << guessesCounter << " remaining.\n"
 			hangmanDraw(guessesCounter, winning, solution);
-			cout << "Enter another letter: ";
-			cin >> guessLetter;
 		}
 	}
-	if (guessesCounter == 0)
-		cout << "You are dead!\n"; // end if you run out of guesses
 }
 
 void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay)
@@ -164,16 +155,11 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay)
 	string rightLeg = "\\";
 	const char space = ' ';
 	string youWon = "YOU WON !!";
+	string youLose = "YOU DIED !";
 
 	//system("CLS"); // clear the input screen
-	
-	if (guessNumber == -1)
-	{
-		//initial display
-		cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
-			<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
-	}
-	else if (guessNumber > 1  && winningResult == 0)
+
+	if (guessNumber <= 7)
 	{
 		switch (guessNumber)
 		{
@@ -181,22 +167,72 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay)
 			hD13 = hD13.replace(25, wordLength, solutionDisplay);
 			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
 				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
+			break;
+		case 6:
+			hD10 = hD10.replace(12, 3, head);
+			hD13 = hD13.replace(25, wordLength, solutionDisplay);
+			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
+				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
+			break;
+		case 5:
+			hD10 = hD10.replace(12, 3, head);
+			hD11 = hD11.replace(12, 1, leftArm);
+			hD13 = hD13.replace(25, wordLength, solutionDisplay);
+			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
+				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
+			break;
+		case 4:
+			hD10 = hD10.replace(12, 3, head);
+			hD11 = hD11.replace(12, 2, leftArm + neck);
+			hD13 = hD13.replace(25, wordLength, solutionDisplay);
+			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
+				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
+			break;
+		case 3:
+			hD10 = hD10.replace(12, 3, head);
+			hD11 = hD11.replace(12, 3, leftArm + neck + rightArm);
+			hD13 = hD13.replace(25, wordLength, solutionDisplay);
+			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
+				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
+			break;
+		case 2:
+			hD10 = hD10.replace(12, 3, head);
+			hD11 = hD11.replace(12, 3, leftArm + neck + rightArm);
+			hD12 = hD12.replace(13, 1, torso);
+			hD13 = hD13.replace(25, wordLength, solutionDisplay);
+			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
+				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
+			break;
+		case 1:
+			hD10 = hD10.replace(12, 3, head);
+			hD11 = hD11.replace(12, 3, leftArm + neck + rightArm);
+			hD12 = hD12.replace(13, 1, torso);
+			hD13 = hD13.replace(12, 2, leftLeg + space);
+			hD13 = hD13.replace(25, wordLength, solutionDisplay);
+			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
+				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
+			break;
+		case 0:
+			hD10 = hD10.replace(12, 3, head);
+			hD11 = hD11.replace(12, 3, leftArm + neck + rightArm);
+			hD12 = hD12.replace(13, 1, torso);
+			hD13 = hD13.replace(12, 3, leftLeg + space + rightLeg);
+			hD13 = hD13.replace(25, wordLength, solutionDisplay);
+			hD14 = hD14.replace(31, 10, youLose);
+			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
+				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
+			break;
 		default:
+			cout << "\aError!";
 			break;
 		}
 	}
-	
 	else if (winningResult == 1)
 	{
-		hD10 = hD10.replace(12, 3, head);
-		hD11 = hD11.replace(12, 3, leftArm + neck + rightArm);
-		hD12 = hD12.replace(13, 1, torso);
-		hD13 = hD13.replace(12, 3, leftLeg + space + rightLeg);
 		hD13 = hD13.replace(25, wordLength, solutionDisplay);
 		hD14 = hD14.replace(31, 10, youWon);
-
 		cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
 			<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
-	}
 
+	}
 }
