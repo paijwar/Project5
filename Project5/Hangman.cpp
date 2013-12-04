@@ -42,7 +42,6 @@ int main() // reads in the file and sets the functions in motion
 {
 	readString(); // reads the file and stores variables
 	initialize(wordLength); // sends length of word to initialize function
-	cout << "Let's play hangman!\n";
 	guess(); // game logic
 
 	return 0;
@@ -69,7 +68,7 @@ void readString()
 	random20 = (rand() % 20); // set random to 20 +-
 
 	word = dictionary[rand() % 20]; // set word = to a random letter in the dictionary
-	cout << word << endl; // cheater! (testing)
+	//cout << word << endl; // cheater! (testing)
 	wordLength = word.size(); // size (length) of the string
 }
 
@@ -154,7 +153,7 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay)
 
 	//system("CLS"); // clear the input screen
 
-	if (guessNumber <= 7)
+	if (guessNumber <= 7 && winningResult == 0)
 	{
 		switch (guessNumber)
 		{
@@ -228,6 +227,5 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay)
 		hD14 = hD14.replace(31, 10, youWon);
 		cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
 			<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
-
 	}
 }
