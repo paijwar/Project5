@@ -40,10 +40,16 @@ unsigned long wordLength; // length of word
 
 int main() // reads in the file and sets the functions in motion
 {
-	readString(); // reads the file and stores variables
-	initialize(wordLength); // sends length of word to initialize function
-	guess(); // game logic
+	char repeat = 'Y'; // test if user wants to repeat
+	while (repeat == 'Y' || repeat == 'y')
+	{
+		readString(); // reads the file and stores variables
+		initialize(wordLength); // sends length of word to initialize function
+		guess(); // game logic
 
+		cout << "Do you want to play again? Y/N: ";
+		cin >> repeat;
+	}
 	return 0;
 }
 
