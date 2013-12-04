@@ -157,7 +157,7 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay)
 	string youWon = "YOU WON !!";
 	string youLose = "YOU DIED !";
 
-	//system("CLS"); // clear the input screen
+	system("CLS"); // clear the input screen (Windows only)
 
 	if (guessNumber <= 7 && winningResult == 0)
 	{
