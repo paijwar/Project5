@@ -217,7 +217,7 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay)
 			hD11 = hD11.replace(12, 3, leftArm + neck + rightArm);
 			hD12 = hD12.replace(13, 1, torso);
 			hD13 = hD13.replace(12, 3, leftLeg + space + rightLeg);
-			hD13 = hD13.replace(25, wordLength, solutionDisplay);
+			hD13 = hD13.replace(25, wordLength, word); // show the full word
 			hD14 = hD14.replace(31, 10, youLose);
 			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
 				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
