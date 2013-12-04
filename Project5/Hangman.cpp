@@ -84,8 +84,12 @@ void guess()
 	int winning = 0, goodGuess = 0; // variable to check if the game is won or the guess is good
 	int guessesCounter = 7; // hangman countdown
 	
-	cout << solution << endl; // output solution
-	cout << "Guess a letter\n";
+	//cout << solution << endl; // output solution
+	
+	// show hangman to start
+	hangmanDraw(-1, 0, solution); // coded values to show the first screen.
+	
+	cout << "Guess a letter: ";
 	cin >> guessLetter;
 
 	while ((guessesCounter > 1) && (winning == 0))
@@ -110,18 +114,20 @@ void guess()
 		}
 		else if (goodGuess == 1)
 		{
-			cout << "Good guess!\n"
-				<< solution << endl; // display positive
+			//cout << "Good guess!\n"
+			//	<< solution << endl; // display positive
 			goodGuess = 0; // clear flag for next run
+			hangmanDraw(guessesCounter, winning, solution);
 			cout << "Enter your next guess: ";
 			cin >> guessLetter;
 		}
 		else
 		{
 			guessesCounter--; // decrement guess
-			cout << "The letter " << guessLetter << " does not appear in the word.\n"
-				<< "You have " << guessesCounter << " remaining.\n"
-				<< "Enter another letter: ";
+			//cout << "The letter " << guessLetter << " does not appear in the word.\n"
+			//	<< "You have " << guessesCounter << " remaining.\n"
+			hangmanDraw(guessesCounter, winning, solution);
+			cout << "Enter another letter: ";
 			cin >> guessLetter;
 		}
 	}
@@ -159,9 +165,28 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay)
 	const char space = ' ';
 	string youWon = "YOU WON !!";
 
-	system("CLS"); // clear the input screen
+	//system("CLS"); // clear the input screen
 	
-	if (winningResult == 1)
+	if (guessNumber == -1)
+	{
+		//initial display
+		cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
+			<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
+	}
+	else if (guessNumber > 1  && winningResult == 0)
+	{
+		switch (guessNumber)
+		{
+		case 7:
+			hD13 = hD13.replace(25, wordLength, solutionDisplay);
+			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
+				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15;
+		default:
+			break;
+		}
+	}
+	
+	else if (winningResult == 1)
 	{
 		hD10 = hD10.replace(12, 3, head);
 		hD11 = hD11.replace(12, 3, leftArm + neck + rightArm);
