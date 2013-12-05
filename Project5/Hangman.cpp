@@ -60,7 +60,7 @@ void readString()
 	int random20 = 0; // random number
 	string dictionary[20]; // 20 words to load from file
 
-	inFile.open("Words4Hangman.txt"); // open input file
+	inFile.open("Words4Hangman.dat"); // open input file
 
 	while (inFile.good())
 	{
