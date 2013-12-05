@@ -75,7 +75,7 @@ void readString()
 	srand((int)time(NULL)); // initialize random seed
 	random20 = (rand() % 20); // set random to 20 +-
 
-	word = dictionary[rand() % 20]; // set word = to a random letter in the dictionary
+	word = dictionary[random20]; // set word = to a random letter in the dictionary
 	//cout << word << endl; // cheater! (testing)
 	wordLength = word.size(); // size (length) of the string
 }
