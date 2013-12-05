@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project5", "Project5\Project5.vcxproj", "{D7711CF8-D7ED-4ADF-AE17-68FD7E5163FA}"
 EndProject
 Global
@@ -11,6 +13,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D7711CF8-D7ED-4ADF-AE17-68FD7E5163FA}.Debug|Win32.ActiveCfg = Debug|Win32
 		{D7711CF8-D7ED-4ADF-AE17-68FD7E5163FA}.Debug|Win32.Build.0 = Debug|Win32
+		{D7711CF8-D7ED-4ADF-AE17-68FD7E5163FA}.Debug|Win32.Deploy.0 = Debug|Win32
 		{D7711CF8-D7ED-4ADF-AE17-68FD7E5163FA}.Release|Win32.ActiveCfg = Release|Win32
 		{D7711CF8-D7ED-4ADF-AE17-68FD7E5163FA}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
