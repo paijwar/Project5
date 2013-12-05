@@ -92,7 +92,7 @@ void guess()
 
 	hangmanDraw(guessesCounter, winning, solution, guessLetter, goodGuess); // show blank
 
-	while ((guessesCounter > 0) && (winning == 0))
+	while ((guessesCounter > 0) && (winning == 0)) // while the guesses counter is greater than 0 and winning flag is unset
 	{
 		
 		cout << "Guess a letter: ";
@@ -108,17 +108,17 @@ void guess()
 			}
 		}
 		
-		if (solution == word) // thus victory
+		if (solution == word) // winning condition
 		{
 			winning = 1; // variable flag telling drawing function victory is true
 			hangmanDraw(guessesCounter, winning, solution, guessLetter, goodGuess);
 		}
-		else if (goodGuess == 1)
+		else if (goodGuess == 1) // good guess condition
 		{
 			hangmanDraw(guessesCounter, winning, solution, guessLetter, goodGuess);
 			goodGuess = 0; // clear flag for next run
 		}
-		else
+		else // if you didn't win or get a good guess, fail
 		{
 			guessesCounter--; // decrement guess
 			hangmanDraw(guessesCounter, winning, solution, guessLetter, goodGuess);
@@ -127,8 +127,11 @@ void guess()
 }
 
 void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay, char guessLetter, int goodGuess)
+// epic function to display the game
 {
-	// set up strings for game
+	// set up strings for game using fixed with strings and ascii art
+	// note that each line is a string with a unique variable name.
+	// hD means hangmanDraw
 	string hD01 = "    /\\  /\\__ _ _ __   __ _ _ __ ___   __ _ _ __  \n"; // have to escape out backslash
 	string hD02 = "   / /_/ / _` | '_ \\ / _` | '_ ` _ \\ / _` | '_ \\ \n"; // have to escape out backslash
 	string hD03 = "  / __  / (_| | | | | (_| | | | | | | (_| | | | |\n"; 
@@ -145,7 +148,9 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay, cha
 	string hD14 = "     |                 |                      |  \n";
 	string hD15 = "  ___|___              |______________________|  \n";
 	string hD16 = "                                                 \n";
-	
+	// last string had to be a global so it wouldn't be over writen each
+	//      time the function runs. There is probably a more elegant way
+	//      to do that.
 
 	// set up body parts
 	string head = "(_)";
@@ -156,9 +161,11 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay, cha
 	string leftLeg = "/";
 	string rightLeg = "\\";
 	const char space = ' ';
-	string youWon = "YOU WON !!";
+
+	string youWon = "YOU WON !!"; 
 	string youLose = "YOU DIED !";
-	string guessStr;
+
+	string guessStr; // string that will get the bad guesses for display
 
 	if (goodGuess != 1) // if the guess isn't good add the fail letter to string
 	{
@@ -169,21 +176,22 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay, cha
 
 	if (guessNumber <= 7 && winningResult == 0)
 	{
-		switch (guessNumber)
+		switch (guessNumber) // switch based on the guess number parameter
 		{
 		case 7: // no bad guesses or beginning case
-			hD13 = hD13.replace(25, wordLength, solutionDisplay);
+			hD13 = hD13.replace(25, wordLength, solutionDisplay); // replaces the string line with the 'box' to show solution
 			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
-				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15 << hD16 << hD17;
+				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15 << hD16 << hD17; // outputs each line 
 			break;
-		case 6:
-			hD10 = hD10.replace(12, 3, head);
+		case 6: // lost a head
+			hD10 = hD10.replace(12, 3, head); // adds the head
 			hD13 = hD13.replace(25, wordLength, solutionDisplay);
-			if (goodGuess != 1)
-				hD17 = hD17.replace(17, 1, guessStr);
+			if (goodGuess != 1) // if the guess was bad ... vvv ... otherwise the good guess will end up on the guess line
+				hD17 = hD17.replace(17, 1, guessStr);   // add the bad guess to the output line
 			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
-				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15 << hD16 << hD17;
+				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15 << hD16 << hD17;// outputs each line 
 			break;
+		// each case from here on out adds a body part. the comments are basically the same as above.
 		case 5:
 			hD10 = hD10.replace(12, 3, head);
 			hD11 = hD11.replace(12, 1, leftArm);
@@ -232,12 +240,12 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay, cha
 			cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
 				<< hD08 << hD09 << hD10 << hD11 << hD12 << hD13 << hD14 << hD15 << hD16 << hD17;
 			break;
-		case 0:
+		case 0: // death
 			hD10 = hD10.replace(12, 3, head);
 			hD11 = hD11.replace(12, 3, leftArm + neck + rightArm);
 			hD12 = hD12.replace(13, 1, torso);
 			hD13 = hD13.replace(12, 3, leftLeg + space + rightLeg);
-			hD13 = hD13.replace(25, wordLength, word); // show the full word
+			hD13 = hD13.replace(25, wordLength, word); // show the full word to show what you missed
 			hD14 = hD14.replace(31, 10, youLose);
 			if (goodGuess != 1)
 				hD17 = hD17.replace(35, 1, guessStr);
@@ -249,8 +257,12 @@ void hangmanDraw(int guessNumber, int winningResult, string solutionDisplay, cha
 			break;
 		}
 	}
-	else if (winningResult == 1)
+	else if (winningResult == 1) // if you won, do this
 	{
+		// note: this takes away the body parts. I should
+		//       rewrite the winning if statement as a
+		//       switch, similar to the above one.
+		//       see https://github.com/talllguy/Project5/issues/5
 		hD13 = hD13.replace(25, wordLength, solutionDisplay);
 		hD14 = hD14.replace(31, 10, youWon);
 		cout << hD01 << hD02 << hD03 << hD04 << hD05 << hD06 << hD07
