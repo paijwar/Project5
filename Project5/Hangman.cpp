@@ -49,6 +49,7 @@ int main() // reads in the file and sets the functions in motion
 		guess(); // game logic
 
 		cout << "Do you want to play again? Y/N: ";
+		
 		cin >> repeat;
 	}
 	return 0;
@@ -82,6 +83,7 @@ void readString()
 void initialize(unsigned long wordLength)
 {
 	solution.assign(wordLength, '*'); // fills up the solution string (an array) with as many *s as the word length
+	hD17 = "  Your guesses:                                  \n"; // string to store guesses
 }
 
 void guess()
