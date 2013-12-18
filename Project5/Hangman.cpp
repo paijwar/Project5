@@ -17,9 +17,9 @@ Problem:
 
 ***************************************************************/
 
-#include <iomanip.h>
-#include <iostream.h>
-#include <fstream.h>
+#include <iomanip>
+#include <iostream>
+#include <fstream>
 #include <string.h>
 #include <time.h> // for random
 using namespace std;
