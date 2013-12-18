@@ -17,10 +17,10 @@ Problem:
 
 ***************************************************************/
 
-#include <iomanip>
-#include <iostream>
-#include <fstream>
-#include <string>
+#include <iomanip.h>
+#include <iostream.h>
+#include <fstream.h>
+#include <string.h>
 #include <time.h> // for random
 using namespace std;
 
